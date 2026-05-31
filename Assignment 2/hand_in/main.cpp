@@ -85,27 +85,37 @@ int main() {
     
     // Test Exercise 6.1.7: CalculateExponential
     std::cout << "--- Exercise 6.1.7: Matrix Exponential ---" << std::endl;
-    ComplexNumber **A = new ComplexNumber*[2];
-    A[0] = new ComplexNumber[2];
-    A[1] = new ComplexNumber[2];
-    A[0][0] = ComplexNumber(1, 0);
-    A[0][1] = ComplexNumber(0, 0);
-    A[1][0] = ComplexNumber(0, 0);
-    A[1][1] = ComplexNumber(1, 0);
+    ComplexNumber **A = new ComplexNumber*[3];
+    for (int i = 0; i < 3; i++) {
+        A[i] = new ComplexNumber[3];
+    }
+    // 3x3 identity matrix
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (i == j) {
+                A[i][j] = ComplexNumber(1, 0);
+            } else {
+                A[i][j] = ComplexNumber(0, 0);
+            }
+        }
+    }
     
-    ComplexNumber **result = new ComplexNumber*[2];
-    result[0] = new ComplexNumber[2];
-    result[1] = new ComplexNumber[2];
+    ComplexNumber **result = new ComplexNumber*[3];
+    for (int i = 0; i < 3; i++) {
+        result[i] = new ComplexNumber[3];
+    }
     
     CalculateExponential(A, 5, result);
     std::cout << "e^I (approx):" << std::endl;
-    printMatrix(result, 2, 2);
+    printMatrix(result, 3, 3);
     
-    delete[] A[0];
-    delete[] A[1];
+    for (int i = 0; i < 3; i++) {
+        delete[] A[i];
+    }
     delete[] A;
-    delete[] result[0];
-    delete[] result[1];
+    for (int i = 0; i < 3; i++) {
+        delete[] result[i];
+    }
     delete[] result;
     
     std::cout << "All tests completed!" << std::endl;
