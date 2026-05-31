@@ -6,9 +6,10 @@ GraduateStudent::GraduateStudent(std::string name, double fines, double fees, bo
     : Student(name, fines, fees), fullTime(ft) {}
 
 double GraduateStudent::MoneyOwed() const {
+    double total = Student::MoneyOwed();  // tuition_fees + library_fines
     if (fullTime) {
-        return tuition_fees;  // Full-time graduate students pay only tuition
+        return total * 0.5;  // Full-time graduate students pay 50% discount
     } else {
-        return Student::MoneyOwed();  // Part-time pays everything
+        return total;  // Part-time graduate students pay full amount
     }
 }

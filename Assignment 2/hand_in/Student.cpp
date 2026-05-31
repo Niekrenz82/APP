@@ -10,7 +10,9 @@ double Student::MoneyOwed() const {
 }
 
 void Student::SetLibraryFines(double amount) {
-    library_fines = amount;
+    if (amount >= 0) {
+        library_fines = amount;
+    }
 }
 
 double Student::GetLibraryFines() const {
